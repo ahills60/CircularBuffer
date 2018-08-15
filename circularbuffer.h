@@ -6,6 +6,11 @@
 #ifndef __CIRCULARBUFFER_H_
 #define __CIRCULARBUFFER_H_
 
+// C++ detection:
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Define DISABLE_MODULO for improved speed per add and return
 #define     DISABLE_MODULO
 
@@ -19,4 +24,7 @@ void addItem(BUFF_T item);
 void initialiseCircularBuffer(void);
 void listItems(BUFF_T *array);
 
+#ifdef __cplusplus
+}
 #endif
+#endif // __CIRCULARBUFFER_H_

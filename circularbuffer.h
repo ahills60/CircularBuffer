@@ -3,6 +3,9 @@
  *
  */
 
+#ifndef __CIRCULARBUFFER_H_
+#define __CIRCULARBUFFER_H_
+
 // Define DISABLE_MODULO for improved speed per add and return
 #define     DISABLE_MODULO
 
@@ -15,3 +18,5 @@
 void addItem(BUFF_T item);
 void initialiseCircularBuffer(void);
 void listItems(BUFF_T *array);
+
+#endif

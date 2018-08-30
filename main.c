@@ -10,9 +10,10 @@ void printArray(float *array, unsigned int length)
 
 int main(void)
 {
-    float *myArray = (float *)calloc(CIRCULAR_BUFFER_LENGTH, sizeof(float));
+    float *myArray = (float *)calloc(CIRCULAR_BUFFER_INITIAL_LENGTH, sizeof(float));
+    float *biggerArray = NULL;
 
-    printf("Initialising the ciruclar buffer...\n");
+    printf("Initialising the circular buffer...\n");
     initialiseCircularBuffer();
 
     printf("Adding a few items to the buffer array...\n");
@@ -28,7 +29,7 @@ int main(void)
     listItems(myArray);
 
     printf("Return the buffer contents...\n");
-    printArray(myArray, CIRCULAR_BUFFER_LENGTH);
+    printArray(myArray, CIRCULAR_BUFFER_INITIAL_LENGTH);
 
     printf("Add a few more items...\n");
     addItem(107.0);
@@ -42,7 +43,26 @@ int main(void)
     listItems(myArray);
 
     printf("Return the buffer contents...\n");
-    printArray(myArray, CIRCULAR_BUFFER_LENGTH);
+    printArray(myArray, CIRCULAR_BUFFER_INITIAL_LENGTH);
+
+    printf("Resize the array to max...\n");
+    changeSize(CIRCULAR_BUFFER_MAX_LENGTH);
+    biggerArray = (float *) realloc(myArray, CIRCULAR_BUFFER_MAX_LENGTH * sizeof(float));
+
+    // Check if realloc was a success
+    if (biggerArray != NULL)
+        myArray = biggerArray;
+    else
+    {
+        printf("Unable to reallocate memory\n");
+        exit(1);
+    }
+
+    printf("Get the circular buffer contents...\n");
+    listItems(myArray);
+
+    printf("Return the buffer contents...\n");
+    printArray(myArray, CIRCULAR_BUFFER_MAX_LENGTH);
 
     // Free the memory used to store the data:
     free(myArray);

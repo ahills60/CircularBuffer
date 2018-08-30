@@ -10,3 +10,4 @@ This circular buffer has a basic optimisation of pre-computing pointer indices t
 
   Note that this workaround requires more memory, particular for large arrays. It may therefore be necessary to consider the impact of memory versus modulo evaluation in the intended application of this circular buffer.
   
+  This implementation provides a function (`changeSize`) to resize the buffer on demand. A larger parent buffer is used to ensure that enlarging a buffer doesn't result in zero values, but returns historical data.
